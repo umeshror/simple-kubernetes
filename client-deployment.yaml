@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 1 # number of pods to create
+  selector:
+    matchLabels:
+      component: web # 1 for deployment to identify pods created by kbbbctl
+  template:
+    metadata:
+      labels:
+        component: web  # 2
+    spec:
+      containers:
+        - name: client
+          image: umeshvjti/multi-client
+          ports:
+            - containerPort: 3000 # expose this port

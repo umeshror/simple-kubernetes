@@ -1,0 +1,16 @@
+apiVersion: v1
+#  Limits the kind/types of objects we can use
+kind: Pod # a container a pod
+# type of object we want to make like service or pod etc === things that are going to be create in k8 cluster
+# pod is used to run container
+# service is used for setting up netowrking etc
+metadata:
+  name: client-pod # name of the pod
+  labels:
+    component: web
+spec:
+  containers:
+    - name: client # for login and reference to running container
+      image: umeshvjti/multi-worker
+      ports:
+        - containerPort: 3000 # expose this port

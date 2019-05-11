@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort # expose a container to outside world (dev purpose)
+  ports:
+    - port: 3050 # worthless for application. Its just to access pod by another pod
+      targetPort: 3000 # port inside of the pod that we want to open traffic to
+      nodePort: 31515 # port that gets expose to outside world
+  selector:
+    # need to be in sync with labels in Pod conf
+    component: web
+
+#NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+#client-node-port   NodePort    10.96.199.211   <none>        3050:31515/TCP   98m
+#kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP          3h50m
