@@ -1,3 +1,5 @@
+# more flexible than pod, we can edit more properties, monitors state of each pod
+# maintains pod template
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +8,8 @@ spec:
   replicas: 1 # number of pods to create
   selector:
     matchLabels:
-      component: web # 1 for deployment to identify pods created by kbbbctl
+      component: web # 1 for deployment to identify pods created by kubectl
+
   template:
     metadata:
       labels:
