@@ -7,10 +7,10 @@ kind: Pod # a container a pod
 metadata:
   name: client-pod # name of the pod
   labels:
-    component: web
+    component: web # sync with line number 14 of client-node-port
 spec:
   containers:
     - name: client # for login and reference to running container
       image: umeshvjti/multi-worker
       ports:
-        - containerPort: 3000 # expose this port
+        - containerPort: 3000 # expose this port :  client-node-port.yaml:10

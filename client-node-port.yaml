@@ -1,15 +1,16 @@
 apiVersion: v1
-kind: Service
+kind: Service  # sets up networking in K8 cluster
 metadata:
   name: client-node-port
 spec:
+  # NodePort / ClusterIP / Load Balancer / Ingress
   type: NodePort # expose a container to outside world (dev purpose)
   ports:
-    - port: 3050 # worthless for application. Its just to access pod by another pod
-      targetPort: 3000 # port inside of the pod that we want to open traffic to
-      nodePort: 31515 # port that gets expose to outside world
+    - port: 3050 # worthless for this application. Its just to access pod by another pod
+      targetPort: 3000 # port inside of the pod that we want to open traffic to: client-pod.yaml:16
+      nodePort: 31515 # 30000<==>32767 port that gets expose to outside world minikube_ip:31515
   selector:
-    # need to be in sync with labels in Pod conf
+    # need to be in sync with labels in Pod conf client-pod.yaml line number 10
     component: web
 
 #NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
